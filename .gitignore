@@ -1,0 +1,11 @@
+# node modules
+node_modules/
+
+# virtualenv
+venv/
+
+# .idea
+.idea/
+
+# dotenv
+.env
