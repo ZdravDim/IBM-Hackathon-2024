@@ -1,0 +1,46 @@
+// Button - Start
+
+.my-btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    border: 3px solid transparent;
+    border-image: linear-gradient(90deg, rgba(244,108,178,1) 0%, rgba(116,102,255,1) 100%);
+    border-image-slice: 1;
+    cursor: pointer;
+    border-radius: 0px;
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+}
+   
+.my-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(244,108,178);
+    background: linear-gradient(90deg, rgba(244,108,178,1) 0%, rgba(116,102,255,1) 100%); 
+    transform: translateX(-100%);
+    transition: all .3s;
+    z-index: -1;
+}
+   
+.my-btn:hover::before {
+    transform: translateX(0);
+}
+
+#logo-small {
+    min-width: 300px;
+    max-width: 90%;
+    height: auto;
+}
+
+// Button - End
