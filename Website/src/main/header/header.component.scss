@@ -13,13 +13,17 @@ li a {
     outline: none;
 }
 
-li a.active-link::after {
+li a::after {
     content: '';
     position: absolute;
     bottom: 3px;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 3px;
-    background: rgb(244,108,178);
     background: linear-gradient(90deg, rgba(244,108,178,1) 0%, rgba(116,102,255,1) 100%);
+    transition: width 0.2s ease-in-out;
+}
+
+li a.active-link::after, li a:hover::after {
+	width: 100%;
 }

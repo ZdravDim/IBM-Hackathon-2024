@@ -4,15 +4,19 @@ a {
     outline: none;
 }
 
-a.active-link::after {
+a::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 3px;
-    background: rgb(244,108,178);
     background: linear-gradient(90deg, rgba(244,108,178,1) 0%, rgba(116,102,255,1) 100%);
+    transition: width 0.2s ease-in-out;
+}
+
+a.active-link::after, a:hover::after {
+	width: 100%;
 }
 
 #div-border {
