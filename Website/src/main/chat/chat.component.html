@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="chat-input">
-        <input type="text" id="message-input" placeholder="Type a message...">
+        <input type="text" id="message-input" (keydown.enter)="send()" (keydown.escape)="loseFocus()" placeholder="Type a message...">
         <button id="send-button" (click)="send()">Send</button>
     </div>
 <div>
