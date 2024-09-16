@@ -1,11 +1,30 @@
 <div class="chat-container">
+    <div *ngIf="messages.length === 0" id="logo-center">
+        <img src="logo-center.png">
+         <div class="d-flex flex-row">
+            <div class="logo-div">
+                <div class="d-flex flex-row">
+                    <i class="fa-solid fa-gavel fa-lg"></i>
+                    <h5>Identify the Legal Issue</h5>
+                </div>
+                <p>Determine the specific legal question or issue you are addressing. This could relate to contracts, torts, property, or any other area of law.</p>
+            </div>
+            <div class="logo-div">
+                <div class="d-flex flex-row">
+                    <i class="fa-solid fa-file-lines fa-lg"></i>
+                    <h5>Consult Relevant Legal Sources</h5>
+                </div>
+                <p>Search through legal textbooks, case law databases, and statutes to gather information. I will find sources that are most relevant to your issue.</p>
+            </div>
+         </div>
+    </div>
     <div class="chat-messages-wrapper">
         <div class="chat-messages" *ngFor="let message of messages">
             <div class="message" [ngClass]="{'user': message.userMessage }">{{ message.text }}</div>
         </div>
     </div>
     <div class="chat-input">
-        <input type="text" id="message-input" (keydown.enter)="send()" (keydown.escape)="loseFocus()" placeholder="Type a message...">
+        <input type="text" id="message-input" (keydown.enter)="send()" (keydown.escape)="loseFocus()" placeholder="Message AI Attorney">
         <button id="send-button" (click)="send()">Send</button>
     </div>
 <div>
