@@ -12,7 +12,7 @@ def proximity_search( question ):
 
     return "\n".join(documents)
 
-def get_response(  ):
+def get_response( chatMessage ):
     prompt_input = """<|system|>
     You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior. You are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, and then give the final answer. Avoid repeating information unless asked.
     <|user|>
@@ -21,7 +21,7 @@ def get_response(  ):
     History of assistant's responses...
     """
 
-    question = 'Tell me about the content of the given document'
+    question = chatMessage.requestMessage
     grounding = proximity_search(question)
     formattedQuestion = f"""<|user|>
     [Document]

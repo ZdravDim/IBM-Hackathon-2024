@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { HttpService } from '../../services/http.service';
+import { browserRefresh } from '../../app/app.component';
 
 @Component({
   selector: 'app-chat',
@@ -10,23 +12,39 @@ import { Component } from '@angular/core';
 })
 export class ChatComponent {
 
-  messages: any = [];
+  messages: any = sessionStorage.getItem('ai-attorney-chat-messages') ? JSON.parse(sessionStorage.getItem('ai-attorney-chat-messages')!) : [];
+
+  constructor(private http: HttpService) {}
 
   loseFocus() {
     (document.getElementById('message-input') as HTMLInputElement).blur();
   }
 
-  send() {
+  async send() {
     if (this.messages.length > 0 && this.messages[this.messages.length - 1].userMessage === true) {
       return;
     }
     const messageText = (document.getElementById('message-input') as HTMLInputElement).value;
     if (messageText) {
       this.messages.push({ text: messageText, userMessage: true });
-      // call api instead of next line and await response...
-      this.messages.push({ text: 'I am a bot', userMessage: false });
       (document.getElementById('message-input') as HTMLInputElement).value = '';
       (document.getElementById('message-input') as HTMLInputElement).focus();
+      const response = await this.http.getChatMessage(messageText);
+      this.messages.push({ text: response.responseMessage, userMessage: false });
     }
   }
+
+  ngOnInit() {
+    if (browserRefresh) {
+      this.messages = [];
+      sessionStorage.removeItem('ai-attorney-chat-messages');
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.messages) {
+      sessionStorage.setItem('ai-attorney-chat-messages', JSON.stringify(this.messages));
+    }
+  }
+
 }
