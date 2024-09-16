@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { browserRefresh } from '../../app/app.component';
 
@@ -10,7 +10,9 @@ import { browserRefresh } from '../../app/app.component';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent {
+export class ChatComponent implements AfterViewChecked {
+
+  @ViewChild('scrollContainer') private chatContainer!: ElementRef;
 
   messages: any = sessionStorage.getItem('ai-attorney-chat-messages') ? JSON.parse(sessionStorage.getItem('ai-attorney-chat-messages')!) : [];
 
@@ -27,10 +29,12 @@ export class ChatComponent {
     const messageText = (document.getElementById('message-input') as HTMLInputElement).value;
     if (messageText) {
       this.messages.push({ text: messageText, userMessage: true });
+      this.scrollToBottom();
       (document.getElementById('message-input') as HTMLInputElement).value = '';
       (document.getElementById('message-input') as HTMLInputElement).focus();
       const response = await this.http.getChatMessage(messageText);
       this.messages.push({ text: response.responseMessage, userMessage: false });
+      this.scrollToBottom();
     }
   }
 
@@ -45,6 +49,15 @@ export class ChatComponent {
     if (this.messages) {
       sessionStorage.setItem('ai-attorney-chat-messages', JSON.stringify(this.messages));
     }
+  }
+
+  private scrollToBottom(): void {
+    const container = this.chatContainer.nativeElement;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
 }

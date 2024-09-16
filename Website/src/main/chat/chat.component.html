@@ -18,7 +18,7 @@
             </div>
          </div>
     </div>
-    <div class="chat-messages-wrapper">
+    <div #scrollContainer class="chat-messages-wrapper">
         <div class="chat-messages" *ngFor="let message of messages">
             <div class="message" [ngClass]="{'user': message.userMessage }">
                 <div class="d-flex d-row">
