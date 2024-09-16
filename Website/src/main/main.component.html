@@ -1,4 +1,8 @@
 <div class="w-100 h-100">
     <app-header></app-header>
+    <div id="div-border" class="d-flex flex-row d-lg-none w-90 justify-content-center mx-auto mb-2">
+        <a (click)="navigateTo('/chat')" class="w-50 text-center py-2" [ngClass]="{ 'active-link': currentUrl === '/chat' }">Chat</a>
+        <a (click)="navigateTo('/summarization')" class="w-50 text-center py-2" [ngClass]="{ 'active-link': currentUrl === '/summarization' }">Summarization</a>
+    </div>
     <router-outlet></router-outlet>
 </div>

@@ -17,6 +17,11 @@ html, body, app-root, app-home, app-main {
   font-style: normal;
 }
 
-p, span, h1, h2, h3, h4, h5, h6 {
-  color: white;
+p, span, a, h1, h2, h3, h4, h5, h6 {
+  color: white !important;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer !important;
 }
