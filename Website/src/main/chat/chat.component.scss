@@ -3,10 +3,10 @@
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 106px);
+  height: calc(100vh - 120px);
   width: 100%;
   @media (max-width: 992px) {
-    height: calc(100vh - 164px);
+    height: calc(100vh - 175px);
   }
 }
 
