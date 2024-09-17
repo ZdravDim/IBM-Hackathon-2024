@@ -1,1 +1,56 @@
-<p>summarize works!</p>
+<div class="chat-container">
+    <div *ngIf="messages.length === 0" id="logo-center">
+        <img src="logo-center.png">
+         <div class="d-flex flex-row">
+            <div class="logo-div">
+                <div class="d-flex flex-row">
+                    <i class="fa-solid fa-file fa-lg"></i>
+                    <h5>Summarize a document</h5>
+                </div>
+                <p>Automated summarization tools and techniques can enhance efficiency, freeing up time for more critical tasks.</p>
+            </div>
+         </div>
+    </div>
+    <div #scrollContainer class="chat-messages-wrapper">
+        <div class="chat-messages" *ngFor="let message of messages">
+            <div class="message" [ngClass]="{'user': message.userMessage }">
+                <div class="d-flex d-row">
+                    <img src="logo-message.png" *ngIf="!message.userMessage" height="40px" width="40px" class="me-2">
+                    <span>{{ message.text }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat-input position-relative">
+        <div class="fileUploadWrapper">
+            <label for="file">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
+                <circle
+                  stroke-width="20"
+                  stroke="#6c6c6c"
+                  fill="none"
+                  r="158.5"
+                  cy="168.5"
+                  cx="168.5"
+                ></circle>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="25"
+                  stroke="#6c6c6c"
+                  d="M167.759 79V259"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="25"
+                  stroke="#6c6c6c"
+                  d="M79 167.138H259"
+                ></path>
+              </svg>
+              <span class="tooltip">Upload a document</span>
+            </label>
+            <input type="file" id="file" name="file" (change)="uploadFile($event)" />
+          </div>
+        <input type="text" id="message-input" (keydown.enter)="send()" (keydown.escape)="loseFocus()" placeholder="Message AI Attorney">
+        <button id="send-button" (click)="send()">Send</button>
+    </div>
+</div>

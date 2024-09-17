@@ -15,4 +15,8 @@ export class HttpService {
     return firstValueFrom(this.http.post(`${this.url}/chat`, { requestMessage: requestMessage }));
   }
 
+  getSummarizationMessage(formData: FormData): Promise<any> {
+    return firstValueFrom(this.http.post(`${this.url}/summarization`, formData));
+  }
+
 }
