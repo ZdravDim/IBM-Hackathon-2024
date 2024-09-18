@@ -21,8 +21,9 @@ project_id = os.getenv("PROJECT_ID")
 
 parameters = {
     "decoding_method": "greedy",
-    "max_new_tokens": 900,
-    "repetition_penalty": 1.05
+    "max_new_tokens": 300,
+    "min_new_tokens": 20,
+    "repetition_penalty": 1
 }
 
 from ibm_watsonx_ai.foundation_models import Model
