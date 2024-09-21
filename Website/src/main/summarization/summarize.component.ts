@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { browserRefresh } from '../../app/app.component';
 
@@ -23,21 +23,29 @@ export class SummarizationComponent {
   }
 
   async send() {
-      alert(this.requestDocument?.name);
       if (this.messages.length > 0 && this.messages[this.messages.length - 1].userMessage === true) {
       return;
     }
-    const messageText = (document.getElementById('message-input') as HTMLInputElement).value;
-    if (messageText && this.requestDocument) {
+    let messageText = (document.getElementById('message-input') as HTMLInputElement).value;
+    if (this.requestDocument) {
+      messageText = messageText.length === 0 ? 'Summarize this document' : messageText;
       this.messages.push({ text: messageText, userMessage: true });
+      this.messages.push({ text: "I'm thinking, please be patient...", userMessage: false });
       this.scrollToBottom();
       (document.getElementById('message-input') as HTMLInputElement).value = '';
       (document.getElementById('message-input') as HTMLInputElement).focus();
       const formData = new FormData();
       formData.append('summarizationMessage', messageText);
       formData.append('document', this.requestDocument);
-      const response = await this.http.getSummarizationMessage(formData);
-      this.messages.push({ text: response.responseMessage, userMessage: false });
+      try {
+        const response = await this.http.getSummarizationMessage(formData);
+        this.messages.pop();
+        this.messages.push({ text: response.responseMessage, userMessage: false });
+      }
+      catch(error) {
+        this.messages.pop();
+        this.messages.push({ text: "You see this message because of one of these reasons: 1) Hackathon is over 2) Internal server error occured.", userMessage: false });
+      }
       this.scrollToBottom();
     }
   }

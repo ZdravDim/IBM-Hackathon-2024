@@ -15,7 +15,7 @@
         <div class="chat-messages" *ngFor="let message of messages">
             <div class="message" [ngClass]="{'user': message.userMessage }">
                 <div class="d-flex d-row">
-                    <img src="logo-message.png" *ngIf="!message.userMessage" height="40px" width="40px" class="me-2">
+                    <img loading="lazy" src="logo-message.png" *ngIf="!message.userMessage" height="40px" width="40px" class="me-2">
                     <span>{{ message.text }}</span>
                 </div>
             </div>
