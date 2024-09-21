@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from "../home/home.component";
 import { Subscription } from 'rxjs';
+import { RefreshService } from '../services/refresh.service';
 
 export let browserRefresh = false;
 
@@ -17,7 +18,7 @@ export class AppComponent {
 
   subscription: Subscription;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private refreshService: RefreshService) {
     this.subscription = router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
           browserRefresh = !router.navigated;

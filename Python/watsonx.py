@@ -15,7 +15,13 @@ def proximity_search( question ):
 
 def get_chat_response( chatMessage ):
     prompt_input = """<|system|>
-    You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior. You are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, and then give the final answer. Avoid repeating information unless asked.
+    You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. 
+    You are helpful and harmless and you follow ethical guidelines and promote positive behavior. 
+    You are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. 
+    When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, 
+    and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. 
+    Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, 
+    and then give the final answer. Avoid repeating information unless asked.
     <|user|>
     History of user's questions...
     <|assistant|>
@@ -36,8 +42,6 @@ def get_chat_response( chatMessage ):
     print(f"AI: {generated_response}")
     return generated_response
 
-def get_summarization_response( summarizationMessage: str, document: UploadFile ):
-    print(document.filename)
-    # handle the file...
-    return "Summarization message..."
+async def get_summarization_response( summarizationMessage: str, document: UploadFile ):
+    return "You see this message because of one of these reasons: 1) Hackathon is over 2) Internal server error occured."
 

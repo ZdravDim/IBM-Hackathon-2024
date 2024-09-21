@@ -1,5 +1,3 @@
-from typing import Union
-
 from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,9 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins= [
-        "http://localhost:4200"
-    ],
+    allow_origins= ["http://localhost:4200"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,5 +27,5 @@ def read_root(chatMessage: ChatMessage):
     return { "responseMessage": get_chat_response(chatMessage) }
 
 @app.post("/summarization")
-def read_root(summarizationMessage: str = Form(...), document: UploadFile = File(...)):
-    return { "responseMessage": get_summarization_response(summarizationMessage, document) }
+async def read_root(summarizationMessage: str = Form(...), document: UploadFile = File(...)):
+    return { "responseMessage": await get_summarization_response(summarizationMessage, document) }

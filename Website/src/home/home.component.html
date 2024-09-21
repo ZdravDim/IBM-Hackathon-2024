@@ -1,8 +1,10 @@
 <div id="transparent-layer">&nbsp;</div>
-<img id="logo" src="logo-transparent.png" class="d-none d-md-block mb-3">
-<img id="logo-small" src="logo-small-transparent.png" class="d-block d-md-none mb-3">
+<img id="logo" src="logo.png" class="d-none d-md-block mb-3">
+<img id="logo-small" src="logo-small.png" class="d-block d-md-none mb-3">
 <button>
   <span class="text" routerLink="chat">Start now</span>
 </button>
-<canvas id="canvas3d"></canvas>
 <p id="footer" class="w-100 text-center">© 2024 Tacka Zarez. All rights reserved</p>
+<div id="particle-container">
+  <div *ngFor="let particle of particles" class="particle"></div>
+</div>
