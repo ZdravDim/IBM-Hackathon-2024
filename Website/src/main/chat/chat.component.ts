@@ -52,6 +52,7 @@ export class ChatComponent implements AfterViewChecked {
       this.messages = [];
       sessionStorage.removeItem('ai-attorney-chat-messages');
     }
+    (document.getElementById('message-input') as HTMLInputElement).focus();
   }
 
   ngOnDestroy(): void {

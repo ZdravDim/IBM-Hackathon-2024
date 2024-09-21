@@ -23,7 +23,7 @@ parameters = {
     "decoding_method": "greedy",
     "max_new_tokens": 300,
     "min_new_tokens": 20,
-    "repetition_penalty": 1
+    "repetition_penalty": 1.1
 }
 
 from ibm_watsonx_ai.foundation_models import Model

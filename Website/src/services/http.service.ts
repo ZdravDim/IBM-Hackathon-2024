@@ -8,11 +8,11 @@ import { catchError, firstValueFrom, map, throwError } from 'rxjs';
 export class HttpService {
 
   private url = 'http://localhost:8000';
+  // private url = 'actual backend url';
 
   constructor(private http: HttpClient) {}
 
   getChatMessage(requestMessage: string, messageHistory: string[]): Promise<any> {
-    alert(messageHistory);
     return firstValueFrom(
       this.http.post(`${this.url}/chat`, { requestMessage: requestMessage, messageHistory: messageHistory }).pipe(
         map((response: any) => {

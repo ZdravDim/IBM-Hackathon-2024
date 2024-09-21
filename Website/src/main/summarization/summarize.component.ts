@@ -56,6 +56,7 @@ export class SummarizationComponent {
       this.requestDocument = null;
       sessionStorage.removeItem('ai-attorney-summarization-messages');
     }
+    (document.getElementById('message-input') as HTMLInputElement).focus();
   }
 
   ngOnDestroy(): void {

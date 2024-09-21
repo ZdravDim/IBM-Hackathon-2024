@@ -15,22 +15,17 @@ def proximity_search( question ):
 
 def get_chat_response( chatMessage ):
     prompt_input = """<|system|>
-    You are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. 
-    You are helpful and harmless and you follow ethical guidelines and promote positive behavior. 
-    You are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. 
-    When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, 
-    and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. 
-    Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, 
-    and then give the final answer. Avoid repeating information unless asked.
+    You are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is correct given the context and user query, and that it is grounded in the context. Always make sure that your response is relevant to the question. Avoid repeating information unless asked.
+    You serve as law helper. You will always be grounded with files of US Code. Always provide information from given documents. If you are not certain in your answer, respond with "I need more information". You will bring all of information about asked questions, but always look at the documents.
+    Always provide what section of US Code is about given prompt.
+    Be always gramatically correct.
     """
 
-    for i, message in enumerate(chatMessage.messageHistory):
-        if i % 2 == 0:
-            prompt_input += f"<|user|>\n{message}\n"
-        else:
-            prompt_input += f"<|assistant|>\n{message}\n"
-
-    print(prompt_input)
+    # for i, message in enumerate(chatMessage.messageHistory):
+    #     if i % 2 == 0:
+    #         prompt_input += f"<|user|>\n{message}\n"
+    #     else:
+    #         prompt_input += f"<|assistant|>\n{message}\n"
 
     question = chatMessage.requestMessage
     grounding = proximity_search(question)
