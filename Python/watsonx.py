@@ -22,11 +22,15 @@ def get_chat_response( chatMessage ):
     and that it is grounded in the context. Furthermore, make sure that the response is supported by the given document or context. 
     Always make sure that your response is relevant to the question. If an explanation is needed, first provide the explanation or reasoning, 
     and then give the final answer. Avoid repeating information unless asked.
-    <|user|>
-    History of user's questions...
-    <|assistant|>
-    History of assistant's responses...
     """
+
+    for i, message in enumerate(chatMessage.messageHistory):
+        if i % 2 == 0:
+            prompt_input += f"<|user|>\n{message}\n"
+        else:
+            prompt_input += f"<|assistant|>\n{message}\n"
+
+    print(prompt_input)
 
     question = chatMessage.requestMessage
     grounding = proximity_search(question)

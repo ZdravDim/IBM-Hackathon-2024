@@ -35,7 +35,7 @@ from ibm_watsonx_ai.client import APIClient
 wml_credentials = get_credentials()
 client = APIClient(credentials=wml_credentials, project_id=project_id)
 
-vector_index_id = "a2fb0562-5ddb-4e31-b702-c4b97c896858"
+vector_index_id = "93cc3441-6288-4710-9d72-9add66850fdc"
 vector_index_details = client.data_assets.get_details(vector_index_id)
 vector_index_properties = None
 

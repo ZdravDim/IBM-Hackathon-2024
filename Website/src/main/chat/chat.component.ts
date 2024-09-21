@@ -34,7 +34,7 @@ export class ChatComponent implements AfterViewChecked {
       (document.getElementById('message-input') as HTMLInputElement).value = '';
       (document.getElementById('message-input') as HTMLInputElement).focus();
       try {
-        const response = await this.http.getChatMessage(messageText);
+        const response = await this.http.getChatMessage(messageText, this.messages.slice(0, -2).map((message: any) => message.text));
         this.messages.pop();
         this.messages.push({ text: response.responseMessage, userMessage: false });
       }

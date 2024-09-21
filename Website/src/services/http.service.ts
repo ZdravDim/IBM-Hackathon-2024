@@ -11,9 +11,10 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  getChatMessage(requestMessage: string): Promise<any> {
+  getChatMessage(requestMessage: string, messageHistory: string[]): Promise<any> {
+    alert(messageHistory);
     return firstValueFrom(
-      this.http.post(`${this.url}/chat`, { requestMessage: requestMessage }).pipe(
+      this.http.post(`${this.url}/chat`, { requestMessage: requestMessage, messageHistory: messageHistory }).pipe(
         map((response: any) => {
           if (response.status < 200 || response.status >= 300) {
             throw new Error(`Request failed with status code ${response.status}`);
