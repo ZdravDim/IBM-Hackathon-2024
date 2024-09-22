@@ -7,8 +7,8 @@ import { catchError, firstValueFrom, map, throwError } from 'rxjs';
 })
 export class HttpService {
 
-  private url = 'http://localhost:8000';
-  // private url = 'actual backend url';
+  // private url = 'http://localhost:8000';
+  private url = 'https://ai-attorney-e7hcgsg4dhd0gshr.germanywestcentral-01.azurewebsites.net';
 
   constructor(private http: HttpClient) {}
 
