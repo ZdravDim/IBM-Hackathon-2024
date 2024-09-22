@@ -1,12 +1,12 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.11.0
+FROM python:3.11
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy requirements.txt and install dependencies
-COPY dependencies.txt .
-RUN pip install --no-cache-dir -r dependencies.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
 COPY . .
