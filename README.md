@@ -6,9 +6,9 @@
 
 - Hackathon promoting [watsonx.ai](https://www.ibm.com/products/watsonx-ai)
 
-- AI helping attorneys find relevant titles and articles for specific situations and helping them summarize documents
+- AI helping attorneys find relevant titles and articles for specific situations and helping them summarize documents.
 
-- Training our model and fine-tuning foundation models wasn't allowed, so we focused on prompt engineering to get the best response for our use case
+- Training our model and fine-tuning foundation models wasn't allowed, so we focused on prompt engineering to get the best response for our use case.
 
 ## Technologies
 
